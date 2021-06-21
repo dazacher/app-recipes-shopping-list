@@ -1,7 +1,9 @@
-import { EventEmitter } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { Ingredient } from "../shared/ingredient.model";
+import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
 
+@Injectable()
 
 export class RecipeService {
     recipeSelected = new EventEmitter<Recipe>();
@@ -10,7 +12,7 @@ export class RecipeService {
                     'This simple grilled chicken breast recipe is seriously the best you will try! Coated in spices, it’s so perfectly juicy and charred. Get all my top tips and learn how to grill the most amazing chicken!', 
                     'https://easychickenrecipes.com/wp-content/uploads/2020/06/grilled-chicken-recipe-best-5-of-6-768x1152.jpg',
                     [
-                        new Ingredient('Chicken Breast', 5),
+                        new Ingredient('Chicken Breast', 4),
                         new Ingredient('Barbeque Sauce', 1)
                     ]),
         new Recipe('Cranberry Pork Tenderloing', 
@@ -22,7 +24,12 @@ export class RecipeService {
                     ])
       ];
 
+      constructor(private slService: ShoppingListService) {}
       getRecipes() {
         return this.recipes.slice();
+      }
+
+      addIngredientsToShoppingList(ingredients: Ingredient[]) {
+        this.slService.addIngredients(ingredients);
       }
 }
