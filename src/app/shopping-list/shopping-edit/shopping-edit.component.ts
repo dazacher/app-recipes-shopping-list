@@ -8,13 +8,13 @@ import { ShoppingListService } from '../shopping-list.service';
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit {
-@ViewChild('nameInput', {static: true}) nameInputRef : ElementRef;
-@ViewChild('amountInput', {static: true}) amountInputRef : ElementRef;
+@ViewChild('nameInput', {static: false}) nameInputRef : ElementRef;
+@ViewChild('amountInput', {static: false}) amountInputRef : ElementRef;
 // @Output() ingredientAdded = new EventEmitter<Ingredient>();
 
   constructor(private slService: ShoppingListService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
     onAddItem() {
